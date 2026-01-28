@@ -1,0 +1,4 @@
+.env
+node_modules
+seeders/20220706033743-add-users.js
+seeders/20220709102840-add-histories.js
