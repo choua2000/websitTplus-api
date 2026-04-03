@@ -29,8 +29,11 @@ import internationalCallsRoute from './internationCall.Route';
 import typeRoute from './typePackage.Route';
 import categoryPackage from './categoryPackage.Route';
 import report from './reportRoute';
-
+import jobRoute from './job.Route';
+import typeJobRoute from './type_job.Route';
 import adminChatRoute from './admin/chat.Route'
+import jobApplicationRoute from './job_application.Route'
+import bannerFindjobRoute from './bannerfindjob.Route'
 
 const app = express();
 //app.use("/v1",nice);
@@ -44,9 +47,9 @@ app.use('/v1', permissRoute);
 
 app.use('/v1', cateProductRoute);
 
-app.use('/v1',chatRoute);
+app.use('/v1', chatRoute);
 
-app.use('/v1',chatQuestion);
+app.use('/v1', chatQuestion);
 
 
 // app.use('/v1', catePackageRoute);
@@ -91,8 +94,16 @@ app.use('/v1', typeRoute);
 
 app.use('/v1', categoryPackage);
 
-app.use('/v1/admin',adminChatRoute)
+app.use('/v1/admin', adminChatRoute)
 
-app.use('/v1',report);
+app.use('/v1', report);
+
+app.use('/v1', jobRoute);
+
+app.use('/v1', typeJobRoute);
+
+app.use('/v1', jobApplicationRoute);
+
+app.use('/v1', bannerFindjobRoute);
 
 module.exports = app;

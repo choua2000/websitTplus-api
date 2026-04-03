@@ -238,7 +238,6 @@ export const signUpAdmin = async (req, res, next) => {
                 include: [{ model: Permissions, as: 'permissions' }]
             }],
         });
-
         return res.json({
             success: true,
             message: "User registered successfully",

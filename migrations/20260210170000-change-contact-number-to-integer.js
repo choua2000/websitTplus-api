@@ -1,0 +1,17 @@
+'use strict';
+
+module.exports = {
+    async up(queryInterface, Sequelize) {
+        await queryInterface.changeColumn('job_applications', 'contact_number', {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+        });
+    },
+
+    async down(queryInterface, Sequelize) {
+        await queryInterface.changeColumn('job_applications', 'contact_number', {
+            type: Sequelize.STRING,
+            allowNull: false,
+        });
+    }
+};

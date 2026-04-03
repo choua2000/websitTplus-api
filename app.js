@@ -68,13 +68,11 @@ sequelize
         console.error('Unable to connect to the database:', err);
     });
 
-const port = process.env.PORT || 8000
-
-const server = app.listen(port, () => {
-    console.log(`app is running on port:${port}`);
+const port = process.env.PORT
+const IP = process.env.IP
+const server = app.listen(port, IP, () => {
+    console.log(`app is running on port:http://${IP}:${port}`);
 });
-
-
 const io = new Server(server, {
     cors: {
         origin: '*',
@@ -115,7 +113,7 @@ io.on("connection", (socket) => {
 //                  .' \\|     |// '.
 //                 / \\|||  :  |||// \
 //                / _||||| -:- |||||- \
-//               |   | \\\  -  /// |   |                 
+//               |   | \\\  -  /// |   |
 //               | \_|  ''\---/''  |_/ |
 //               \  .-\__  '-'  ___/-. /
 //             ___'. .'  /--.--\  `. .'___
@@ -124,15 +122,15 @@ io.on("connection", (socket) => {
 //         \  \ `_.   \_ __\ /__ _/   .-` /  /
 //     =====`-.____`.___ \_____/___.-`___.-'=====
 //                       `=---='
-//                                    ("`-''-/").___..--''"`-._ 
-//                                 `6_ 6  )   `-.  (     ).`-.__.`) 
-//                                 (_Y_.)'  ._   )  `._ `. ``-..-`  
-//                                  _..`--'_..-_/  /--'_.' ,'  
+//                                    ("`-''-/").___..--''"`-._
+//                                 `6_ 6  )   `-.  (     ).`-.__.`)
+//                                 (_Y_.)'  ._   )  `._ `. ``-..-`
+//                                  _..`--'_..-_/  /--'_.' ,'
 //                                 (il),-''  (li),'  ((!.-'
 //
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
-//                    
+//
 //
 
 

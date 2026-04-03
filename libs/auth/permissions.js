@@ -83,7 +83,7 @@ export default {
     // -------> contact <--------- 
     CREATE_TITLE_CONTACT: 'create-title-contact',
     UPDATE_TITLE_CONTACT: 'update-title-contact',
-    DELETE_TITLE_CONTACT: 'delete-title-contact',   
+    DELETE_TITLE_CONTACT: 'delete-title-contact',
     VIEW_CONTACT: 'view-contact',
     DELETE_CONTACT: 'delete-contact',
 
@@ -106,7 +106,7 @@ export default {
     CREATE_QUESTION: 'create-question',
     UPDATE_QUESTION: 'update-question',
     DELETE_QUESTION: 'delete-question',
-    
+
     // ------> reply user <------------
     SEND_MESSAGE: 'send-message',
 
@@ -123,6 +123,12 @@ export default {
     DELETE_SIM_TYPE: 'delete-sim-type',
     ADD_SIM_TYPE_PACKAGE: 'add-sim-type-package',
     DELETE_SIM_TYPE_PACKAGE: 'delete-sim-type-package',
+
+    // -------> job <---------  
+    CREATE_JOB: 'create-job',
+    UPDATE_JOB: 'update-job',
+    DELETE_JOB: 'delete-job',
+    VIEW_JOB: 'view-job',
 
 
 }

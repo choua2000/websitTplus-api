@@ -11,7 +11,8 @@ import {
     findByOrderBan,
     findBan,
     findOneBan,
-    deleteBan
+    deleteBan,
+    findBanName
 } from '../controllers/banner.Controller';
 import { uploadBanImage as uploader } from '../middlewares/uploader';
 
@@ -30,5 +31,9 @@ router
     .route('/banner-order')
     .post(Auth, can(permiss.UPDATE_BANNER), updateOrderBan)
     .get(findByOrderBan)
+
+router
+    .route('/banner-name')
+    .get(findBanName)
 
 export default router;

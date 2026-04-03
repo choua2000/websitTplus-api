@@ -1,7 +1,7 @@
 import express from 'express'
 const router = express.Router();
 
-import { 
+import {
     signUpCustomer,
     signInCustomer,
     signUpAdmin,

@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.PostTran, { foreignKey: 'languageId' });
       this.hasMany(models.PostImageTran, { foreignKey: 'languageId' });
       this.hasMany(models.BannerTran, { foreignKey: 'languageId' });
+      this.hasMany(models.BannerFindjobTran, { foreignKey: 'languageId' });
       this.hasMany(models.SiteInfoTran, { foreignKey: 'languageId' });
       // this.hasMany(models.BanImageTran, { foreignKey: 'languageId' });
       this.hasMany(models.ChatQuestionTrans, { foreignKey: 'languageId' });

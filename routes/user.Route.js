@@ -62,4 +62,4 @@ router.get('/report-users-all/employees', reportAllEmployees);
 
 router.get('/report-users-all/generate', reportUserGenerate);
 
-export default router;
+export default router; 

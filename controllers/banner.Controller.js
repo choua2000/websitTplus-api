@@ -26,6 +26,10 @@ export const createBan = async (req, res, next) => {
     const { files } = req;
     const transaction = await sequelize.transaction();
     try {
+        // Parse other_lang if it's a string (multipart/form-data quirk)
+        if (typeof req.body.other_lang === 'string') {
+            req.body.other_lang = JSON.parse(req.body.other_lang);
+        }
         const body = await addBannerSchema.validateAsync(req.body);
         // Check banner
         const banner = await Banner.findOne({ where: { banName: body.banName } }, { transaction: transaction });
@@ -114,7 +118,7 @@ export const createBan = async (req, res, next) => {
             const responseData = await Banner.findByPk(newBanner.id, {
                 include: [{ model: BannerTran, as: 'BannerTrans' }]
             });
-
+            console.log("responseData", responseData);
             return res.json({
                 success: true,
                 message: "Created banner successfully",
@@ -122,6 +126,7 @@ export const createBan = async (req, res, next) => {
             });
         }
     } catch (error) {
+        console.log("error==>", error);
         if (error.isJoi === true) error.status = 422;
         await transaction.rollback();
         next(error);
@@ -142,6 +147,10 @@ export const updateBan = async (req, res, next) => {
     const { body, files } = req;
     const transaction = await sequelize.transaction();
     try {
+        // Parse other_lang if it's a string (multipart/form-data quirk)
+        if (typeof body.other_lang === 'string') {
+            body.other_lang = JSON.parse(body.other_lang);
+        }
         // check uniqueBan
         const uniqueBan = await Banner.findAll({ where: { banName: body.banName, id: { [Op.ne]: id } } }, { transaction: transaction });
         if (uniqueBan[0]) throw createError.BadRequest(`This name ban ${body.banName} already taken`);
@@ -201,7 +210,7 @@ export const updateBan = async (req, res, next) => {
             banner.banName = body.banName;
             banner.link = body.link;
             banner.image = imageUrl[0],
-            banner.description = body.description;
+                banner.description = body.description;
             await banner.save();
             // update tran
             await BannerTran.update({
@@ -342,6 +351,7 @@ export const findBan = async (req, res, next) => {
         return res.json({
             success: true,
             message: "Get data all banner successfully",
+            count: banner.length,
             data: banner,
         });
 
@@ -427,3 +437,29 @@ export const deleteBan = async (req, res, next) => {
         next(error);
     }
 }
+
+
+// MEAN : filter where find banner banName
+
+export const findBanName = async (req, res, next) => {
+    try {
+        const banName = req.query.banName;
+
+        const data = await Banner.findAll({
+            where: {
+                banName: {
+                    [Op.like]: `${banName}%`
+                },
+            },
+            include: [{ model: BannerTran, as: 'BannerTrans' }]
+        });
+
+        return res.json({
+            success: true,
+            message: "Get all banner by name successfully",
+            data: data,
+        });
+    } catch (error) {
+        next(error);
+    }
+};

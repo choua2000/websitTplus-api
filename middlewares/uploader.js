@@ -127,7 +127,7 @@ export const uploadFileJob = multer({
             cb(null, true);
         } else {
             cb(null, false);
-            return cb(createError.BadRequest('Only .png, .jpg and .jpeg format allowed!'));
+            return cb(createError.BadRequest('Only .png, .jpg and .jpeg or .pdf format allowed!'));
         }
     }
 });
